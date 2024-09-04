@@ -1255,7 +1255,7 @@
 ;;;;;;;;;;;;;;;
 
 ;;; Extended from R4RS to take an optional comparison argument.
-(define (assoc x lis . maybe-=)
+#;(define (assoc x lis . maybe-=)
   (let ((= (optional maybe-= equal?)))
     (find (lambda (entry) (= x (car entry))) lis)))
 
