@@ -1000,7 +1000,7 @@
 
 
 ;;; We extend MAP to handle arguments of unequal length.
-(define map map-in-order)
+;(define map map-in-order)
 
 
 ;;; filter, remove, partition
