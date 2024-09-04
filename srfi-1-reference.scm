@@ -262,6 +262,12 @@
          (if (null? arg) (begin body ...)
            (error "Too many arguments in let-opt" arg)))))
 
+(define-syntax receive
+  (syntax-rules ()
+    ((receive formals expression body ...)
+     (call-with-values (lambda () expression)
+                       (lambda formals body ...)))))
+
 ;;; Constructors
 ;;;;;;;;;;;;;;;;
 
@@ -493,11 +499,11 @@
 ;(define (caaar  x) (caar (car x)))
 ;(define (caadr  x) (caar (cdr x)))
 ;(define (cadar  x) (cadr (car x)))
-;(define (caddr  x) (cadr (cdr x)))
+(define (caddr  x) (cadr (cdr x)))
 ;(define (cdaar  x) (cdar (car x)))
 ;(define (cdadr  x) (cdar (cdr x)))
 ;(define (cddar  x) (cddr (car x)))
-;(define (cdddr  x) (cddr (cdr x)))
+(define (cdddr  x) (cddr (cdr x)))
 ;
 ;(define (caaaar x) (caaar (car x)))
 ;(define (caaadr x) (caaar (cdr x)))
@@ -506,7 +512,7 @@
 ;(define (cadaar x) (cadar (car x)))
 ;(define (cadadr x) (cadar (cdr x)))
 ;(define (caddar x) (caddr (car x)))
-;(define (cadddr x) (caddr (cdr x)))
+(define (cadddr x) (caddr (cdr x)))
 ;(define (cdaaar x) (cdaar (car x)))
 ;(define (cdaadr x) (cdaar (cdr x)))
 ;(define (cdadar x) (cdadr (car x)))
@@ -514,7 +520,7 @@
 ;(define (cddaar x) (cddar (car x)))
 ;(define (cddadr x) (cddar (cdr x)))
 ;(define (cdddar x) (cdddr (car x)))
-;(define (cddddr x) (cdddr (cdr x)))
+(define (cddddr x) (cdddr (cdr x)))
 
 
 (define first  car)
