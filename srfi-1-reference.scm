@@ -158,7 +158,7 @@
 ;;;    (define (check-arg pred val caller)
 ;;;      (let lp ((val val))
 ;;;        (if (pred val) val (lp (error "Bad argument" val pred caller)))))
-;;;   A few uses of the LET-OPTIONAL and :OPTIONAL macros for parsing
+;;;   A few uses of the LET-OPTIONAL and OPTIONAL macros for parsing
 ;;;     optional arguments.
 ;;;
 ;;; Most of these procedures use the NULL-LIST? test to trigger the
@@ -804,7 +804,7 @@
   (check-arg procedure? p unfold-right)
   (check-arg procedure? f unfold-right)
   (check-arg procedure? g unfold-right)
-  (let lp ((seed seed) (ans (:optional maybe-tail '())))
+  (let lp ((seed seed) (ans (optional maybe-tail '())))
     (if (p seed) ans
 	(lp (g seed)
 	    (cons (f seed) ans)))))
@@ -1202,16 +1202,16 @@
 ;;; alist-delete key alist [=]	Alist-delete by key comparison
 
 (define (delete x lis . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (filter (lambda (y) (not (= x y))) lis)))
 
 (define (delete! x lis . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (filter! (lambda (y) (not (= x y))) lis)))
 
 ;;; Extended from R4RS to take an optional comparison argument.
 (define (member x lis . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (find-tail (lambda (y) (= x y)) lis)))
 
 ;;; R4RS, hence we don't bother to define.
@@ -1231,7 +1231,7 @@
 ;;; element-marking. The former gives you O(n lg n), the latter is linear.
 
 (define (delete-duplicates lis . maybe-=)
-  (let ((elt= (:optional maybe-= equal?)))
+  (let ((elt= (optional maybe-= equal?)))
     (check-arg procedure? elt= delete-duplicates)
     (let recur ((lis lis))
       (if (null-list? lis) lis
@@ -1241,7 +1241,7 @@
 	    (if (eq? tail new-tail) lis (cons x new-tail)))))))
 
 (define (delete-duplicates! lis . maybe-=)
-  (let ((elt= (:optional maybe-= equal?)))
+  (let ((elt= (optional maybe-= equal?)))
     (check-arg procedure? elt= delete-duplicates!)
     (let recur ((lis lis))
       (if (null-list? lis) lis
@@ -1256,7 +1256,7 @@
 
 ;;; Extended from R4RS to take an optional comparison argument.
 (define (assoc x lis . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (find (lambda (entry) (= x (car entry))) lis)))
 
 (define (alist-cons key datum alist) (cons (cons key datum) alist))
@@ -1266,11 +1266,11 @@
        alist))
 
 (define (alist-delete key alist . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (filter (lambda (elt) (not (= key (car elt)))) alist)))
 
 (define (alist-delete! key alist . maybe-=)
-  (let ((= (:optional maybe-= equal?)))
+  (let ((= (optional maybe-= equal?)))
     (filter! (lambda (elt) (not (= key (car elt)))) alist)))
 
 
