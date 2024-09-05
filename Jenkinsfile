@@ -64,7 +64,7 @@ pipeline {
                 }
             }
         }
-        stage('Loko R7RS Portability') {
+        stage('mit-scheme R7RS Portability') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'bash r7rs-portability-test.sh mit-scheme "mit-scheme --load"'
