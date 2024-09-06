@@ -29,7 +29,7 @@ pipeline {
             agent { docker { image 'schemers/gambit' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'gsi r7rs-portability-test.scm'
+                    sh 'gsc r7rs-portability-test.scm && ./r7rs-portability-test'
                 }
             }
         }
