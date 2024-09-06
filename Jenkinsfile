@@ -34,6 +34,7 @@ pipeline {
             agent { docker { image 'schemers/gambit' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'gsc -:r7rs -dynamic srfi-1-reference.scm'
                     sh 'gsc -:r7rs -exe r7rs-portability-test.scm && ./r7rs-portability-test'
                 }
             }
