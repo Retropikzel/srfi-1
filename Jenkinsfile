@@ -13,7 +13,7 @@ pipeline {
             agent { docker { image 'schemers/chicken' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'csi -R r7rs r7rs-portability-test.scm'
+                    sh 'csc -X r7rs -R r7rs r7rs-portability-test.scm && ./r7rs-portability-test'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             agent { docker { image 'schemers/cyclone' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'icyc -s r7rs-portability-test.scm'
+                    sh 'cyclone r7rs-portability-test.scm && ./r7rs-portability-test'
                 }
             }
         }
