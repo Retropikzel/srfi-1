@@ -2,10 +2,8 @@ pipeline {
     agent any
     stages {
         stage('Chibi R7RS Portability') {
+            agent { docker { image 'schemers/chibi' } }
             steps {
-                agent {
-                    docker { image 'schemers/chibi' }
-                }
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'chibi-scheme r7rs-portability-test.scm'
                 }
