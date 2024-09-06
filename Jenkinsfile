@@ -10,100 +10,114 @@ pipeline {
             }
         }
         stage('Chicken R7RS Portability') {
+            agent { docker { image 'schemers/chicken' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh chicken "csi -R r7rs"'
+                    sh 'csi -R r7rs r7rs-portability-test.scm'
                 }
             }
         }
         stage('Cyclone R7RS Portability') {
+            agent { docker { image 'schemers/cyclone' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh cyclone "icyc -s"'
+                    sh 'icyc -s r7rs-portability-test.scm'
                 }
             }
         }
         stage('Gambit R7RS Portability') {
+            agent { docker { image 'schemers/gambit' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh gambit gsi'
+                    sh 'gsi r7rs-portability-test.scm'
                 }
             }
         }
         stage('Gerbil R7RS Portability') {
+            agent { docker { image 'schemers/gerbil' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh gerbil gxi'
+                    sh 'gxi r7rs-portability-test.scm'
                 }
             }
         }
         stage('Gauche R7RS Portability') {
+            agent { docker { image 'schemers/gauche' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh gauche gosh'
+                    sh 'gosh r7rs-portability-test.scm'
                 }
             }
         }
         stage('Guile R7RS Portability') {
+            agent { docker { image 'schemers/guile' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh guile guile'
+                    sh 'guile r7rs-portability-test.scm'
                 }
             }
         }
         stage('Kawa R7RS Portability') {
+            agent { docker { image 'schemers/kawa' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh kawa kawa'
+                    sh 'kawa --r7rs r7rs-portability-test.scm'
                 }
             }
         }
         stage('Loko R7RS Portability') {
+            agent { docker { image 'schemers/loko' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh loko "loko -std=r7rs --script"'
+                    sh 'loko -std=r7rs --script r7rs-portability-test.scm'
                 }
             }
         }
         stage('mit-scheme R7RS Portability') {
+            agent { docker { image 'schemers/mit-scheme' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh mit-scheme "mit-scheme --load"'
+                    sh 'mit-scheme --load r7rs-portability-test.scm'
                 }
             }
         }
         stage('Racket R7RS Portability') {
+            agent { docker { image 'schemers/racket' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh racket "racket -I r7rs --script"'
+                    sh 'racket -I r7rs --script r7rs-portability-test.scm'
                 }
             }
         }
         stage('Sagittarius R7RS Portability') {
+            agent { docker { image 'schemers/sagittarius' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh sagittarius sash'
+                    sh 'sash r7rs-portability-test.scm'
                 }
             }
         }
         stage('STklos R7RS Portability') {
+            agent { docker { image 'schemers/stklos' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh stklos stklos'
+                    sh 'stklos r7rs-portability-test.scm'
                 }
             }
         }
         stage('Skint R7RS Portability') {
+            agent { docker { image 'schemers/skint' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh skint skint'
+                    sh 'skint r7rs-portability-test.scm'
                 }
             }
         }
         stage('TR7 R7RS Portability') {
+            agent { docker { image 'schemers/tr7' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'bash r7rs-portability-test.sh tr7 tr7i'
+                    sh 'tr7i r7rs-portability-test.scm'
                 }
             }
         }
