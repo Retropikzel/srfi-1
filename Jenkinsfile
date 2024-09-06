@@ -37,7 +37,7 @@ pipeline {
             agent { docker { image 'schemers/gerbil' } }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'gxi r7rs-portability-test.scm'
+                    sh 'gxi --lang r7rs r7rs-portability-test.scm'
                 }
             }
         }
