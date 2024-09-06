@@ -6,5 +6,5 @@
 *.swp
 r7rs-portability-test
 *.so
-*.o
+*.o*
 *.c
