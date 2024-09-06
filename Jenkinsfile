@@ -7,7 +7,7 @@ pipeline {
                     docker { image 'schemers/chibi' }
                 }
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    chibi-scheme r7rs-portability-test.scm
+                    sh 'chibi-scheme r7rs-portability-test.scm'
                 }
             }
         }
